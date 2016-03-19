@@ -17,7 +17,7 @@ Have a rPi with a LCD screen display information pertaining to bitcoin addresses
 <h2>Files</h2>
 <ol>
   <ul>bitcoinDisplay.py - the Main Program </ul>
-  <ul>bitcoinAddress.py - where all the Btc Addresses are kept </ul>
+  <ul>bitcoinAddress.txt - where all the Btc Addresses are kept </ul>
 </ol>
 
 <h2>Setup:</h2>
