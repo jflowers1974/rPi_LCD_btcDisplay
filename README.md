@@ -7,10 +7,17 @@ The question of how to have an IoT like device display information on one's cold
 <h2>Goal</h2>
 Have a rPi with a LCD screen display information pertaining to bitcoin addresses of interest.
 
+
 <h2>Hardware</h2>
 <ol>
   <li> Raspberry Pi Model 1 Model B </li>
   <li> Adafruit RGB Negative 16x2 LCD+Keypad Kit for Raspberry Pi (https://www.adafruit.com/products/1110) </li>
+</ol>
+
+<h2>Files</h2>
+<ol>
+  <ul>bitcoinDisplay.py - the Main Program </ul>
+  <ul>bitcoinAddress.py - where all the Btc Addresses are kept </ul>
 </ol>
 
 <h2>Setup:</h2>
