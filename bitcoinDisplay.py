@@ -10,8 +10,8 @@ import time
 #Variables that can be adjusted
 #per the user
 #
-minBtc = 0.01
-waitTimeSec = 5
+minBtc = 0.001
+waitTimeSec = 120
 baseBitcoin = 'https://btc.blockr.io/api/v1/address/info/'
 addrBitcoin = '198aMn6ZYAczwrE5NvNTUMyJ5qkfy4g3Hi'
 
@@ -34,36 +34,34 @@ with open('addressBitcoin.txt') as f:
 		arrayAddr.append(line)
 #Number of elements the array
 #
-arrayAddrLen = len(arrayAddr) + 1
+arrayAddrLen = len(arrayAddr)
+
 i=0
+print i
 while True:
-	if i > arrayAddrLen:
-		i = 0
-	else:
+	lcd.clear()
+	lcd.backlight(lcd.GREEN)
+	lcd.message('Getting New\nData from Blockr.io')
+
+	addrBitcoin = arrayAddr[i]
+	btcAPI = urllib2.urlopen(baseBitcoin + addrBitcoin)
+	response = btcAPI.read()
+	responseDictionary = json.loads(response)
+
+	if responseDictionary['status'] == 'success':
+		bitcoinBalance = responseDictionary['data']['balance']
 		lcd.clear()
-		lcd.backlight(lcd.GREEN)
-		lcd.message('Getting New\nData from Blockr.io')
-	
-		addrBitcoin = arrayAddr[i]
-		btcAPI = urllib2.urlopen(baseBitcoin + addrBitcoin)
-		response = btcAPI.read()
-		responseDictionary = json.loads(response)
-	
-		if responseDictionary['status'] == 'success':
-			bitcoinBalance = responseDictionary['data']['balance']
-			if bitcoinBalance < minBtc:
-				lcd.backlight(lcd.RED)
-				lcd.message(addrBitcoin + '\nCheck MT')
-			else:
-				lcd.message(addrBitcoin + '\nContains:' + str(bitcoinBalance))
-				print addrBitcoin
-				print str(bitcoinBalance)
-				print i
-				time.sleep(waitTimeSec)
-				i = i + 1
-		else:
-			bitcoinBalance = 'Err - Check Internet'
+		if bitcoinBalance < minBtc:
 			lcd.backlight(lcd.RED)
-			lcd.message(bitcoinBalance)
-			time.sleep(waitTimeSec)
+			lcd.message('Address Empty???\n' + addrBitcoin)
+		else:
+			lcd.message('btc:' + str(bitcoinBalance) + '\n' + addrBitcoin)
+		time.sleep(waitTimeSec)
+		i = (i + 1)%int(arrayAddrLen)
+		print i
+	else:
+		bitcoinBalance = 'Err - Check Internet'
+		lcd.backlight(lcd.RED)
+		lcd.message(bitcoinBalance)
+		time.sleep(waitTimeSec)
 
