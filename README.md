@@ -22,11 +22,7 @@ Have a rPi with a LCD screen display information pertaining to bitcoin addresses
 
 <h2>Setup:</h2>
 <ol>
-  <li>Follow the instructions provided by adaFruit at https://learn.adafruit.com/adafruit-16x2-character-lcd-plus-keypad-for-raspberry-pi/usage.
-  
-  Don't forget to make the needed modifications using the raspi-config utility
-  
-  Only after the tests provided worked, should you continue.</li>
+  <li>Follow the instructions provided by adaFruit at https://learn.adafruit.com/adafruit-16x2-character-lcd-plus-keypad-for-raspberry-pi/usage.  <p>Don't forget to make the needed modifications using the raspi-config utility. Only after the tests provided worked, should you continue.</li>
   <li> </li>
   <li> </li>
 </ol>
