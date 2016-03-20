@@ -37,7 +37,7 @@ with open('addressBitcoin.txt') as f:
 arrayAddrLen = len(arrayAddr)
 
 i=0
-print i
+
 while True:
 	lcd.clear()
 	lcd.backlight(lcd.GREEN)
@@ -55,13 +55,12 @@ while True:
 			lcd.backlight(lcd.RED)
 			lcd.message('Address Empty???\n' + addrBitcoin)
 		else:
-			lcd.message('btc:' + str(bitcoinBalance) + '\n' + addrBitcoin)
+			lcd.message('btc: ' + str(bitcoinBalance) + '\n' + addrBitcoin)
 		time.sleep(waitTimeSec)
 		i = (i + 1)%int(arrayAddrLen)
-		print i
 	else:
-		bitcoinBalance = 'Err - Check Internet'
+		bitcoinBalance = 'Error \nCheck Internet'
+		lcd.clear()
 		lcd.backlight(lcd.RED)
 		lcd.message(bitcoinBalance)
 		time.sleep(waitTimeSec)
-
