@@ -16,8 +16,13 @@ Have a rPi with a LCD screen display information pertaining to bitcoin addresses
 
 <h2>Files</h2>
 <ol>
-  <ul>bitcoinDisplay.py - the Main Program </ul>
+  <ul>bitcoinDisplay.py - the Main Program, be sure to make executable with chmod +x if you wish to autostart in the future </ul>
   <ul>addressBitcoin.txt - where all the Btc Addresses are kept </ul>
 </ol>
 
 <h2>Setup:</h2>
+<ol>
+  <ul>Follow the instructions provided by adaFruit at https://learn.adafruit.com/adafruit-16x2-character-lcd-plus-keypad-for-raspberry-pi/usage. <p>Don't forget to make the needed modifications using the raspi-config utility</ul>
+  <ul> </ul>
+  <ul> </ul>
+</ol>
