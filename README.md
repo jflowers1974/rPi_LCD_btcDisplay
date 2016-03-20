@@ -24,5 +24,12 @@ Have a rPi with a LCD screen display information pertaining to bitcoin addresses
 <ol>
   <li>Follow the instructions provided by adaFruit at https://learn.adafruit.com/adafruit-16x2-character-lcd-plus-keypad-for-raspberry-pi/usage.  <p>Don't forget to make the needed modifications using the raspi-config utility. Only after the tests provided worked, should you continue.</li>
   <li> </li>
-  <li> </li>
+  <li>Auto running the script, use http://www.raspberrypi-spy.co.uk/2015/02/how-to-autorun-a-python-script-on-raspberry-pi-boot/.  <p> Just make sure that the python script is executable.  Furthermore, the instructions fail to mention the need to background this task by adding an '&' at the end.  <p>i.e. 
+  <ol>
+    <ul>sudo nano /etc/profile </ul>
+    <ul>Scroll to the bottum and add:</ul>
+    <ul>python /home/pi/rPi_LCD_bitcoinDisplay.py & </ul>
+    <p>"sudo" is not needed, and the "&" is.
+  </ol>
+  </li>
 </ol>
