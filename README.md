@@ -7,8 +7,7 @@ The question of how to have an IoT like device display information on one's cold
 <h2>Goal</h2>
 Have a rPi with a LCD screen display information pertaining to bitcoin addresses of interest.  One use case being the viewing of a cold wallet(s) for changes.  
 
-<img src="http://imgur.com/2xZypzh">
-
+<img src="http://i.imgur.com/2xZypzh.jpg" alt="Final Product" width="50%" height="50%">
 
 <h2>Hardware</h2>
 <ol>
