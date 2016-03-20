@@ -11,13 +11,12 @@ import time
 #per the user
 #
 minBtc = 0.001
-waitTimeSec = 120
+waitTimeSec = 5
 baseBitcoin = 'https://btc.blockr.io/api/v1/address/info/'
-addrBitcoin = '198aMn6ZYAczwrE5NvNTUMyJ5qkfy4g3Hi'
-
+addrBitcoin = '1EJYcY9VHu8A1YrijJzr8ponGSByWxsugb'
 #Make certain that the permission permit writing to
 #
-sys.path.append("/home/pi/Adafruit-Raspberry-Pi-Python-Code/Adafruit_CharLCDPlate")
+sys.path.append('/home/pi/Adafruit-Raspberry-Pi-Python-Code/Adafruit_CharLCDPlate')
 from Adafruit_CharLCDPlate import Adafruit_CharLCDPlate
 
 # Initialize the LCD plate.  Should auto-detect correct I2C bus.  If not,
@@ -28,14 +27,12 @@ lcd = Adafruit_CharLCDPlate()
 #Read the bitcoin addresses from external file
 #and input into an array
 #
+arrayAddr = []
 with open('addressBitcoin.txt') as f:
-	arrayAddr = []
-	for line in f:
-		arrayAddr.append(line)
+	arrayAddr = f.readlines()
 #Number of elements the array
 #
 arrayAddrLen = len(arrayAddr)
-
 i=0
 
 while True:
@@ -47,20 +44,21 @@ while True:
 	btcAPI = urllib2.urlopen(baseBitcoin + addrBitcoin)
 	response = btcAPI.read()
 	responseDictionary = json.loads(response)
-
+	lcd.clear()
+	
 	if responseDictionary['status'] == 'success':
 		bitcoinBalance = responseDictionary['data']['balance']
-		lcd.clear()
 		if bitcoinBalance < minBtc:
 			lcd.backlight(lcd.RED)
 			lcd.message('Address Empty???\n' + addrBitcoin)
 		else:
+			print(bitcoinBalance)
+			print(addrBitcoin)
 			lcd.message('btc: ' + str(bitcoinBalance) + '\n' + addrBitcoin)
-		time.sleep(waitTimeSec)
 		i = (i + 1)%int(arrayAddrLen)
 	else:
 		bitcoinBalance = 'Error \nCheck Internet'
-		lcd.clear()
 		lcd.backlight(lcd.RED)
 		lcd.message(bitcoinBalance)
-		time.sleep(waitTimeSec)
+	
+	time.sleep(waitTimeSec)
