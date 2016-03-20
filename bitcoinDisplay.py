@@ -11,9 +11,9 @@ import time
 #per the user
 #
 minBtc = 0.001
-waitTimeSec = 5
+waitTimeSec = 120
 baseBitcoin = 'https://btc.blockr.io/api/v1/address/info/'
-addrBitcoin = '1EJYcY9VHu8A1YrijJzr8ponGSByWxsugb'
+addrBitcoin = ''
 #Make certain that the permission permit writing to
 #
 sys.path.append('/home/pi/Adafruit-Raspberry-Pi-Python-Code/Adafruit_CharLCDPlate')
@@ -52,8 +52,6 @@ while True:
 			lcd.backlight(lcd.RED)
 			lcd.message('Address Empty???\n' + addrBitcoin)
 		else:
-			print(bitcoinBalance)
-			print(addrBitcoin)
 			lcd.message('btc: ' + str(bitcoinBalance) + '\n' + addrBitcoin)
 		i = (i + 1)%int(arrayAddrLen)
 	else:
