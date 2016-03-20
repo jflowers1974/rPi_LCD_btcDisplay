@@ -28,7 +28,7 @@ lcd = Adafruit_CharLCDPlate()
 #and input into an array
 #
 arrayAddr = []
-with open('addressBitcoin.txt') as f:
+with open('/home/pi/rPi_LCD_btcDisplay/addressBitcoin.txt') as f:
 	arrayAddr = f.readlines()
 #Number of elements the array
 #
