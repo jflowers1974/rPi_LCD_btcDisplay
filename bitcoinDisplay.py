@@ -15,3 +15,14 @@ from Adafruit_CharLCDPlate import Adafruit_CharLCDPlate
 #
 lcd = Adafruit_CharLCDPlate()
 
+#Read the bitcoin addresses from external file
+#first determine how many addresses there are
+#Important to end the file on an Address
+#
+totalNumAddr=0
+#Not the most eff, but gets the job done
+#
+with open('addressBitcoin.txt') as f:
+	totalNumAddr = sum(1 for _ in f)
+
+
