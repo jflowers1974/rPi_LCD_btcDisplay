@@ -10,7 +10,7 @@ import time
 #per the user
 #
 minBtc = 0.001
-waitTimeSec = 5
+waitTimeSec = 120
 baseBitcoin = 'https://btc.blockr.io/api/v1/address/info/'
 addrBitcoin = ''
 #Make certain that the permission permit writing to
@@ -42,6 +42,8 @@ while True:
 
 	addrBitcoin = arrayAddr[i]
 	
+#add error handling - in case wifi goes down
+#
 	for j in range(3):
 		try:
 			btcURL = urllib2.urlopen(baseBitcoin + addrBitcoin)
