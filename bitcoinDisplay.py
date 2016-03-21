@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import textwrap
 import json
 import sys
 import urllib2
@@ -11,7 +10,7 @@ import time
 #per the user
 #
 minBtc = 0.001
-waitTimeSec = 120
+waitTimeSec = 5
 baseBitcoin = 'https://btc.blockr.io/api/v1/address/info/'
 addrBitcoin = ''
 #Make certain that the permission permit writing to
@@ -33,18 +32,38 @@ with open('/home/pi/rPi_LCD_btcDisplay/addressBitcoin.txt') as f:
 #Number of elements the array
 #
 arrayAddrLen = len(arrayAddr)
-i=0
+i = 0
+j = 0
 
 while True:
 	lcd.clear()
-	lcd.backlight(lcd.GREEN)
+	lcd.backlight(lcd.BLUE)
 	lcd.message('Getting New\nData from Blockr.io')
 
 	addrBitcoin = arrayAddr[i]
-	btcAPI = urllib2.urlopen(baseBitcoin + addrBitcoin)
-	response = btcAPI.read()
+	
+	for j in range(3):
+		try:
+			btcURL = urllib2.urlopen(baseBitcoin + addrBitcoin)
+		except Exception:
+			lcd.clear()
+			lcd.backlight(lcd.YELLOW)
+			lcd.message('Working...')
+			time.sleep(waitTimeSec)
+			print(j)
+		else:
+			break
+	else:
+		lcd.clear()
+		lcd.backlight(lcd.RED)
+		lcd.message('Connectivity\nError')
+		sys.exit()
+	
+	#btcURL = urllib2.urlopen(baseBitcoin + addrBitcoin)
+	response = btcURL.read()
 	responseDictionary = json.loads(response)
 	lcd.clear()
+	lcd.backlight(lcd.GREEN)
 	
 	if responseDictionary['status'] == 'success':
 		bitcoinBalance = responseDictionary['data']['balance']
